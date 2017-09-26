@@ -120,6 +120,13 @@ val characters = spark.sql("select name, role from got_deaths where death_season
 characters.show()
 ```
 
+*	Find the characters who can potentially come back from dead.
+
+```scala
+val undead = df.where("likelihoodOfReturn != 0").sort($"likelihoodOfReturn".cast("int").desc)
+undead.show()
+```
+
 #####	Create a Dataframe from JSON file.
 
 * Define a case class that represents Device data.
